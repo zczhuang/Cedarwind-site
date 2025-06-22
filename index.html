@@ -112,7 +112,7 @@
     <div class="max-w-6xl mx-auto px-6">
       <h2 class="text-3xl font-extrabold text-center mb-12" data-aos="fade-down">Featured Property</h2>
       <div class="relative group overflow-hidden rounded-3xl shadow-2xl" data-aos="zoom-in">
-        <img src="https://images.unsplash.com/photo-1499955085172-a104c9463ece?auto=format&fit=crop&w=1200&q=80" alt="58 Mary St, Arlington MA" class="w-full h-80 md:h-[28rem] object-cover transition-transform duration-500 group-hover:scale-105" />
+        <img src="portfolio-58-mary.jpg" alt="58 Mary St, Arlington MA" class="w-full h-80 md:h-[28rem] object-cover transition-transform duration-500 group-hover:scale-105" />
         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
         <div class="absolute bottom-6 left-6 text-white">
           <h3 class="text-2xl font-bold tracking-wide">58 Mary St, Arlington MA</h3>
@@ -126,77 +126,4 @@
   <section id="services" class="py-24 bg-gray-50">
     <div class="max-w-6xl mx-auto px-6">
       <h2 class="text-3xl font-extrabold text-center mb-12" data-aos="fade-down">Services</h2>
-      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4" data-aos="fade-up" data-aos-delay="100">
-        <!-- reusable service card -->
-        <template id="service-card">
-          <div class="flex flex-col items-center text-center p-6 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-shadow">
-            <div class="w-14 h-14 flex items-center justify-center rounded-full bg-primary/10 text-primary mb-4"></div>
-            <h3 class="text-lg font-semibold mb-2"></h3>
-            <p class="text-sm text-gray-600"></p>
-          </div>
-        </template>
-        <!-- actual cards rendered via inline script for brevity -->
-        <div id="servicesContainer" class="contents"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="py-24 bg-gradient-to-br from-primary via-forest to-primary text-white relative overflow-hidden">
-    <svg class="absolute inset-0 w-full h-full text-white/5" preserveAspectRatio="none">
-      <defs>
-        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M40 0H0v40" fill="none" stroke="currentColor" stroke-width="1" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#grid)" />
-    </svg>
-    <div class="relative max-w-3xl mx-auto px-6" data-aos="fade-up">
-      <h2 class="text-3xl font-extrabold text-center mb-8">Contact Us</h2>
-      <p class="text-center mb-12 text-white/90">Ready to elevate your property’s performance? Let’s talk.</p>
-      <form class="grid gap-6" action="mailto:stuart@cedarwind.org" method="POST" enctype="text/plain">
-        <input type="text" name="name" placeholder="Name" required class="p-3 rounded-lg border border-white/30 bg-white/10 placeholder-white/70 focus:outline-accent">
-        <input type="email" name="email" placeholder="Email" required class="p-3 rounded-lg border border-white/30 bg-white/10 placeholder-white/70 focus:outline-accent">
-        <textarea name="message" rows="5" placeholder="Tell us about your property…" required class="p-3 rounded-lg border border-white/30 bg-white/10 placeholder-white/70 focus:outline-accent"></textarea>
-        <button type="submit" class="bg-accent hover:bg-white hover:text-primary transition-colors text-white font-semibold py-3 rounded-lg">Send Message</button>
-      </form>
-      <p class="text-xs text-center text-white/60 mt-4">Your default mail client will open when you click “Send Message.”</p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="bg-gray-900 text-gray-400 py-10">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-      <p>&© 2025 Cedarwind Solutions—All rights reserved.</p>
-      <ul class="flex gap-4">
-        <li><a href="#" class="hover:text-white transition">Privacy</a></li>
-        <li><a href="#" class="hover:text-white transition">Terms</a></li>
-      </ul>
-    </div>
-  </footer>
-
-  <!-- INLINE SCRIPT: render services quickly & nav toggle -->
-  <script>
-    // Add service cards data
-    const services = [
-      { icon: '<path d="M3 3h18v4H3z M3 9h12v4H3z M3 15h8v4H3z"/>', title: 'Leasing & Marketing', desc: 'Targeted campaigns, pro photography, and agent syndication.' },
-      { icon: '<path d="M22 7l-5 5-4-4 5-5z M2 20l7-7"/>', title: 'Maintenance', desc: 'In‑house techs and vetted contractors keep costs predictable.' },
-      { icon: '<path d="M4 4h16v2H4z M4 9h10v2H4z M4 14h7v2H4z"/>', title: 'Financial Reporting', desc: 'Live dashboards, monthly statements, and tax‑ready docs.' },
-      { icon: '<path d="M12 2l7 4v6c0 5.25-3.45 10.74-7 12-3.55-1.26-7-6.75-7-12V6z"/>', title: 'Risk & Compliance', desc: 'Navigate regulations + insurance to protect your investment.' },
-    ];
-    const tpl = document.querySelector('#service-card');
-    const parent = document.querySelector('#servicesContainer');
-    services.forEach(({icon,title,desc})=>{
-      const clone = tpl.content.cloneNode(true);
-      const wrapper = clone.querySelector('div');
-      wrapper.querySelector('div').innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">${icon}</svg>`;
-      wrapper.querySelector('h3').textContent = title;
-      wrapper.querySelector('p').textContent = desc;
-      parent.appendChild(clone);
-    });
-
-    // mobile nav toggle
-    document.getElementById('navToggle').onclick = () => document.getElementById('navMenu').classList.toggle('hidden');
-  </script>
-</body>
-</html>
+      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4" data-aos
