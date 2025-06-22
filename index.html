@@ -2,122 +2,87 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cedarwind Solutions | Real‑Estate Management</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cedarwind Solutions | Real‑Estate Management</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- AOS (Animate‑On‑Scroll) for subtle entrance animations -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#1e3a8a',           // deep navy
-            accent:  '#f59e0b',           // warm amber
-            forest:  '#065f46',           // cedar‑green
-          },
-          backgroundImage: {
-            /* dotted motif for subtle texture */
-            'dots': "radial-gradient(currentColor 1px,transparent 1px)",
-          }
-        }
-      }
-    }
-    window.addEventListener('DOMContentLoaded', () => AOS.init({ once:true }));
-  </script>
   <style>
-    /* dotted background utility */
-    .bg-dots {
-      background-image: radial-gradient(rgba(255,255,255,0.2) 1px, transparent 1px);
-      background-size: 16px 16px;
-    }
+    :root{--navy:#1e3a8a;--cedar:#065f46;--amber:#f59e0b}
+    /* decorative blob for hero */
+    .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.7}
+    .blob.one{width:400px;height:400px;top:-100px;left:-120px;background:var(--navy)}
+    .blob.two{width:300px;height:300px;bottom:-80px;right:-80px;background:var(--cedar)}
   </style>
 </head>
-<body class="font-sans text-gray-800 leading-relaxed scroll-smooth">
-
-  <!-- NAVIGATION -->
-  <nav class="fixed w-full bg-white/70 backdrop-blur-lg shadow-sm z-50" id="navbar">
-    <div class="max-w-7xl mx-auto flex items-center justify-between py-3 px-6">
+<body class="font-sans text-gray-800 scroll-smooth antialiased">
+  <!-- NAV -->
+  <nav class="fixed inset-x-0 top-0 z-50 backdrop-blur bg-white/70 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
       <a href="#" class="flex items-center gap-3">
-        <img src="logo.png" alt="Cedarwind Solutions logo" class="h-10 w-auto" />
-        <span class="sr-only">Cedarwind Solutions</span>
+        <img src="logo.png" alt="Cedarwind logo" class="h-10 w-auto" />
+        <span class="sr-only">Cedarwind Solution</span>
       </a>
-      <button class="md:hidden" id="navToggle">
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+      <button id="navToggle" class="md:hidden p-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
-      <ul id="navMenu" class="hidden md:flex gap-8 text-sm font-semibold">
-        <li><a href="#approach" class="hover:text-primary">Approach</a></li>
-        <li><a href="#portfolio" class="hover:text-primary">Portfolio</a></li>
-        <li><a href="#services" class="hover:text-primary">Services</a></li>
-        <li><a href="#contact" class="hover:text-primary">Contact</a></li>
+      <ul id="navMenu" class="hidden md:flex gap-8 font-semibold text-sm">
+        <li><a href="#approach" class="hover:text-[var(--navy)]">Approach</a></li>
+        <li><a href="#portfolio" class="hover:text-[var(--navy)]">Portfolio</a></li>
+        <li><a href="#services" class="hover:text-[var(--navy)]">Services</a></li>
+        <li><a href="#contact" class="hover:text-[var(--navy)]">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- HERO BANNER -->
-  <header class="relative h-[28rem] md:h-[36rem] flex items-center justify-center overflow-hidden">
-    <!-- background photo -->
-    <img src="banner.jpg" alt="Cedarwind hero image" class="absolute inset-0 w-full h-full object-cover" />
-    <!-- gradient overlay -->
-    <div class="absolute inset-0 bg-gradient-to-r from-primary/80 via-forest/70 to-primary/80 mix-blend-multiply"></div>
-    <!-- dots overlay for subtle texture on large screens -->
-    <div class="absolute inset-0 hidden lg:block opacity-10 text-white bg-dots"></div>
+  <!-- HERO -->
+  <header class="relative flex items-center justify-center h-[32rem] overflow-hidden text-center px-6">
+    <!-- decorative blurred blobs -->
+    <span class="blob one"></span>
+    <span class="blob two"></span>
 
-    <div class="relative z-10 text-center px-6" data-aos="fade-up" data-aos-delay="100">
-      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white drop-shadow-lg">Elevating Real‑Estate Value</h1>
-      <p class="mt-4 text-xl md:text-2xl text-gray-100 max-w-2xl mx-auto">Full‑service property management built on transparency, technology, and trust.</p>
-      <a href="#contact" class="mt-8 inline-block bg-accent hover:bg-primary transition-colors text-white px-8 py-3 rounded-full font-semibold shadow-lg" data-aos="zoom-in" data-aos-delay="300">Get in touch</a>
+    <div class="relative z-10 max-w-2xl text-white">
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight drop-shadow-lg">Maximizing <span class="text-[var(--amber)]">Value</span> & Performance<br/>for Every Property</h1>
+      <p class="mt-6 text-lg md:text-2xl text-white/90">Data‑driven, tenant‑focused, and sustainability‑minded real‑estate management.</p>
+      <a href="#contact" class="mt-8 inline-block bg-[var(--amber)] hover:bg-white hover:text-[var(--navy)] px-8 py-3 rounded-full font-semibold transition">Let’s Talk</a>
     </div>
   </header>
+
+  <!-- SVG wave divider -->
+  <svg class="w-full -mt-1" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 80L1440 0V80H0Z" fill="currentColor" class="text-white"></path></svg>
 
   <!-- APPROACH -->
   <section id="approach" class="py-24 bg-gray-50">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-3xl font-extrabold text-center mb-12" data-aos="fade-down">Our Management Approach</h2>
-      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 justify-items-center">
-        <!-- card 1 -->
-        <div class="relative p-8 bg-white rounded-3xl shadow-lg border-t-4 border-accent" data-aos="fade-up" data-aos-delay="50">
-          <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-md">
-            <!-- bar chart icon -->
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 21V11m6 10V3m6 18v-7m6 7V8"/></svg>
-          </div>
-          <h3 class="text-xl font-semibold mt-6 mb-3 text-center">Data‑Driven Decisions</h3>
-          <p class="text-sm text-gray-600 text-center">Real‑time analytics optimize pricing, cut vacancies, and boost NOI.</p>
+      <h2 class="text-3xl font-extrabold text-center mb-12">Our Approach</h2>
+      <div class="grid gap-8 md:grid-cols-3">
+        <div class="bg-white p-8 rounded-3xl shadow hover:shadow-lg transition">
+          <svg class="w-10 h-10 text-[var(--navy)] mb-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h18v4H3z M3 9h12v4H3z M3 15h8v4H3z"/></svg>
+          <h3 class="font-semibold text-lg mb-2">Data‑Driven Decisions</h3>
+          <p class="text-sm text-gray-600">Realtime dashboards inform rent, renewals & CapEx—boosting NOI.</p>
         </div>
-        <!-- card 2 -->
-        <div class="relative p-8 bg-white rounded-3xl shadow-lg border-t-4 border-accent" data-aos="fade-up" data-aos-delay="150">
-          <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-md">
-            <!-- smile icon -->
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20a8 8 0 100-16 8 8 0 000 16zM16 14a4 4 0 01-8 0m1-4h.01M15 10h.01"/></svg>
-          </div>
-          <h3 class="text-xl font-semibold mt-6 mb-3 text-center">Tenant‑First Philosophy</h3>
-          <p class="text-sm text-gray-600 text-center">24/7 support, digital portals, and community‑building for lower churn.</p>
+        <div class="bg-white p-8 rounded-3xl shadow hover:shadow-lg transition">
+          <svg class="w-10 h-10 text-[var(--navy)] mb-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20a8 8 0 100-16 8 8 0 000 16z M8 14s1.5 2 4 2 4-2 4-2"/></svg>
+          <h3 class="font-semibold text-lg mb-2">Tenant‑First Culture</h3>
+          <p class="text-sm text-gray-600">24/7 support & community building reduce churn and vacancies.</p>
         </div>
-        <!-- card 3 -->
-        <div class="relative p-8 bg-white rounded-3xl shadow-lg border-t-4 border-accent" data-aos="fade-up" data-aos-delay="250">
-          <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-md">
-            <!-- leaf icon -->
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2a10 10 0 00-7.485 16.915l7.485-4.415 7.485 4.415A10 10 0 0012 2z"/></svg>
-          </div>
-          <h3 class="text-xl font-semibold mt-6 mb-3 text-center">Sustainable Operations</h3>
-          <p class="text-sm text-gray-600 text-center">Energy audits & green retrofits cut OPEX up to 30%—and future‑proof assets.</p>
+        <div class="bg-white p-8 rounded-3xl shadow hover:shadow-lg transition">
+          <svg class="w-10 h-10 text-[var(--navy)] mb-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C6 7 4 12 4 16a8 8 0 0016 0c0-4-2-9-8-14z"/></svg>
+          <h3 class="font-semibold text-lg mb-2">Sustainable Ops</h3>
+          <p class="text-sm text-gray-600">Green retrofits & smart tech cut OPEX up to 30% while future‑proofing.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- PORTFOLIO -->
-  <section id="portfolio" class="py-24 bg-white">
+  <section id="portfolio" class="py-24">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-3xl font-extrabold text-center mb-12" data-aos="fade-down">Featured Property</h2>
-      <div class="relative group overflow-hidden rounded-3xl shadow-2xl" data-aos="zoom-in">
-        <!-- TIP APPLIED: object-center keeps focal point & responsive heights for better composition -->
-        <img src="portfolio-58-mary.jpg" alt="58 Mary St, Arlington MA" class="w-full h-80 md:h-[28rem] object-cover object-center transition-transform duration-500 group-hover:scale-105" />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+      <h2 class="text-3xl font-extrabold text-center mb-12">Featured Property</h2>
+      <div class="relative rounded-3xl overflow-hidden shadow-xl max-w-4xl mx-auto group">
+        <img src="portfolio-58-mary.jpg" alt="58 Mary St living room" class="w-full h-80 md:h-[28rem] object-cover object-center transition-transform duration-500 group-hover:scale-105" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
         <div class="absolute bottom-6 left-6 text-white">
-          <h3 class="text-2xl font-bold tracking-wide">58 Mary St, Arlington MA</h3>
-          <p class="text-sm opacity-90">Residential Duplex • Under Cedarwind management since 2023</p>
+          <h3 class="text-2xl font-bold">58 Mary St, Arlington</h3>
+          <p class="text-sm opacity-90">Residential Duplex • Managed since 2023</p>
         </div>
       </div>
     </div>
@@ -126,23 +91,65 @@
   <!-- SERVICES -->
   <section id="services" class="py-24 bg-gray-50">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-3xl font-extrabold text-center mb-12" data-aos="fade-down">Services</h2>
-      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4" data-aos="fade-up" data-aos-delay="100">
-        <!-- reusable service card -->
-        <template id="service-card">
-          <div class="flex flex-col items-center text-center p-6 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-shadow">
-            <div class="w-14 h-14 flex items-center justify-center rounded-full bg-primary/10 text-primary mb-4"></div>
-            <h3 class="text-lg font-semibold mb-2"></h3>
-            <p class="text-sm text-gray-600"></p>
-          </div>
-        </template>
-        <div id="servicesContainer" class="contents"></div>
+      <h2 class="text-3xl font-extrabold text-center mb-12">Core Services</h2>
+      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div class="flex flex-col items-center text-center p-6 bg-white rounded-3xl shadow hover:shadow-xl transition">
+          <svg class="w-10 h-10 text-[var(--cedar)] mb-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4h16v4H4zM4 12h16v4H4z"/></svg>
+          <h3 class="font-semibold mb-2">Leasing & Marketing</h3>
+          <p class="text-sm text-gray-600">360° tours, targeted ads & agent network slash vacancy time.</p>
+        </div>
+        <div class="flex flex-col items-center text-center p-6 bg-white rounded-3xl shadow hover:shadow-xl transition">
+          <svg class="w-10 h-10 text-[var(--cedar)] mb-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M22 7l-5 5-4-4 5-5zM2 20l7-7"/></svg>
+          <h3 class="font-semibold mb-2">Maintenance</h3>
+          <p class="text-sm text-gray-600">In‑house techs & vetted vendors deliver quality at a predictable cost.</p>
+        </div>
+        <div class="flex flex-col items-center text-center p-6 bg-white rounded-3xl shadow hover:shadow-xl transition">
+          <svg class="w-10 h-10 text-[var(--cedar)] mb-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h18v4H3zM3 10h12v4H3zM3 17h8v4H3z"/></svg>
+          <h3 class="font-semibold mb-2">Financial Reporting</h3>
+          <p class="text-sm text-gray-600">Live dashboards, monthly statements, and tax‑ready docs.</p>
+        </div>
+        <div class="flex flex-col items-center text-center p-6 bg-white rounded-3xl shadow hover:shadow-xl transition">
+          <svg class="w-10 h-10 text-[var(--cedar)] mb-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2l7 4v6c0 5-3 10-7 12-4-2-7-7-7-12V6z"/></svg>
+          <h3 class="font-semibold mb-2">Risk & Compliance</h3>
+          <p class="text-sm text-gray-600">We navigate regulations & insurance so you sleep easy.</p>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- CTA Banner -->
+  <section class="py-16 bg-[var(--navy)] text-white text-center">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-4">Ready to maximise your property’s potential?</h2>
+    <a href="#contact" class="inline-block bg-[var(--amber)] hover:bg-white hover:text-[var(--navy)] px-8 py-3 rounded-full font-semibold transition">Schedule a Consultation</a>
+  </section>
+
   <!-- CONTACT -->
-  <section id="contact" class="py-24 bg-gradient-to-br from-primary via-forest to-primary text-white relative overflow-hidden">
-    <svg class="absolute inset-0 w-full h-full text-white/5" preserveAspectRatio="none">
-      <defs>
-        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+  <section id="contact" class="py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-3xl font-extrabold text-center mb-8">Contact Us</h2>
+      <form action="mailto:stuart@cedarwind.org" method="POST" enctype="text/plain" class="grid gap-6">
+        <input type="text" name="name" placeholder="Name" required class="p-3 rounded-lg border border-gray-300" />
+        <input type="email" name="email" placeholder="Email" required class="p-3 rounded-lg border border-gray-300" />
+        <textarea name="message" rows="5" placeholder="Tell us about your property…" required class="p-3 rounded-lg border border-gray-300"></textarea>
+        <button type="submit" class="bg-[var(--cedar)] hover:bg-[var(--navy)] text-white font-semibold py-3 rounded transition">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-gray-400 text-sm py-8">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p>&© 2025 Cedarwind Solutions. All rights reserved.</p>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-white">Privacy</a>
+        <a href="#" class="hover:text-white">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('navToggle').onclick=()=>{
+      document.getElementById('navMenu').classList.toggle('hidden')}
+  </script>
+</body>
+</html>
