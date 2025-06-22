@@ -34,15 +34,22 @@
   </nav>
 
   <!-- HERO -->
-  <header class="relative flex items-center justify-center h-[32rem] overflow-hidden text-center px-6">
-    <!-- decorative blurred blobs -->
-    <span class="blob one"></span>
-    <span class="blob two"></span>
+  <!-- HERO -->
+  <header class="relative flex items-center justify-center h-[30rem] md:h-[34rem] text-center px-6 overflow-hidden bg-gradient-to-br from-[var(--navy)] via-[var(--navy)]/40 to-[var(--cedar)]">
+    <!-- faint diagonal texture -->
+    <svg class="absolute inset-0 w-full h-full opacity-10" preserveAspectRatio="none">
+      <defs><pattern id="diag" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="2" height="10" fill="white"/></pattern></defs>
+      <rect width="100%" height="100%" fill="url(#diag)" />
+    </svg>
 
-    <div class="relative z-10 max-w-2xl text-white">
-      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight drop-shadow-[0_4px_6px_rgba(0,0,0,0.75)]">Maximizing <span class="text-[var(--amber)]">Value</span> &amp; Performance<br/>for Every Property</h1>
-      <p class="mt-6 text-lg md:text-2xl text-white font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">Data‑driven, tenant‑focused, and sustainability‑minded real‑estate management.</p>
-      <a href="#contact" class="mt-8 inline-block bg-[var(--amber)] hover:bg-white hover:text-[var(--navy)] px-8 py-3 rounded-full font-semibold transition">Let’s Talk</a>
+    <div class="relative z-10 max-w-3xl text-white drop-shadow-[0_3px_5px_rgba(0,0,0,0.7)]">
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
+        Maximizing <span class="text-[var(--amber)]">Value</span> &amp; Performance<br class="hidden sm:block"/>for Every Property
+      </h1>
+      <p class="mt-5 text-base sm:text-xl lg:text-2xl font-medium text-white/90">
+        Data‑driven, tenant‑focused, and sustainability‑minded property management
+      </p>
+      <a href="#contact" class="mt-8 inline-block bg-[var(--amber)] hover:bg-white hover:text-[var(--navy)] px-8 py-3 rounded-full font-semibold transition shadow-lg">Let’s Talk</a>
     </div>
   </header>
 
@@ -50,23 +57,33 @@
   <svg class="w-full -mt-1" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 80L1440 0V80H0Z" fill="currentColor" class="text-white"></path></svg>
 
   <!-- APPROACH -->
+  <!-- APPROACH -->
   <section id="approach" class="py-24 bg-gray-50">
     <div class="max-w-6xl mx-auto px-6">
       <h2 class="text-3xl font-extrabold text-center mb-12">Our Approach</h2>
-      <div class="grid gap-8 md:grid-cols-3">
-        <div class="bg-white p-8 rounded-3xl shadow hover:shadow-lg transition">
-          <svg class="w-10 h-10 text-[var(--navy)] mb-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h18v4H3z M3 9h12v4H3z M3 15h8v4H3z"/></svg>
-          <h3 class="font-semibold text-lg mb-2">Data‑Driven Decisions</h3>
+      <div class="grid gap-10 md:grid-cols-3">
+        <!-- CARD 1 -->
+        <div class="group relative p-10 bg-white rounded-3xl shadow-lg ring-1 ring-gray-200 hover:ring-[var(--navy)] transition transform hover:-translate-y-1">
+          <div class="w-14 h-14 flex items-center justify-center rounded-full bg-[var(--navy)]/10 text-[var(--navy)] mb-6 transition group-hover:bg-[var(--navy)] group-hover:text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h18v4H3z M3 9h12v4H3z M3 15h8v4H3z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Data‑Driven Decisions</h3>
           <p class="text-sm text-gray-600">Realtime dashboards inform rent, renewals & CapEx—boosting NOI.</p>
         </div>
-        <div class="bg-white p-8 rounded-3xl shadow hover:shadow-lg transition">
-          <svg class="w-10 h-10 text-[var(--navy)] mb-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20a8 8 0 100-16 8 8 0 000 16z M8 14s1.5 2 4 2 4-2 4-2"/></svg>
-          <h3 class="font-semibold text-lg mb-2">Tenant‑First Culture</h3>
+        <!-- CARD 2 -->
+        <div class="group relative p-10 bg-white rounded-3xl shadow-lg ring-1 ring-gray-200 hover:ring-[var(--navy)] transition transform hover:-translate-y-1">
+          <div class="w-14 h-14 flex items-center justify-center rounded-full bg-[var(--navy)]/10 text-[var(--navy)] mb-6 transition group-hover:bg-[var(--navy)] group-hover:text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20a8 8 0 100-16 8 8 0 000 16z M8 14s1.5 2 4 2 4-2 4-2"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Tenant‑First Culture</h3>
           <p class="text-sm text-gray-600">24/7 support & community building reduce churn and vacancies.</p>
         </div>
-        <div class="bg-white p-8 rounded-3xl shadow hover:shadow-lg transition">
-          <svg class="w-10 h-10 text-[var(--navy)] mb-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C6 7 4 12 4 16a8 8 0 0016 0c0-4-2-9-8-14z"/></svg>
-          <h3 class="font-semibold text-lg mb-2">Sustainable Ops</h3>
+        <!-- CARD 3 -->
+        <div class="group relative p-10 bg-white rounded-3xl shadow-lg ring-1 ring-gray-200 hover:ring-[var(--navy)] transition transform hover:-translate-y-1">
+          <div class="w-14 h-14 flex items-center justify-center rounded-full bg-[var(--navy)]/10 text-[var(--navy)] mb-6 transition group-hover:bg-[var(--navy)] group-hover:text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C6 7 4 12 4 16a8 8 0 0016 0c0-4-2-9-8-14z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Sustainable Ops</h3>
           <p class="text-sm text-gray-600">Green retrofits & smart tech cut OPEX up to 30% while future‑proofing.</p>
         </div>
       </div>
