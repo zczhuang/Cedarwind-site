@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cedarwind Solutions | Real Estate Management</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#1e3a8a",
+            accent: "#f59e0b"
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-sans text-gray-800 leading-relaxed scroll-smooth">
+
+  <!-- NAVIGATION -->
+  <nav class="fixed w-full bg-white/80 backdrop-blur z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto flex items-center justify-between py-4 px-6">
+      <!-- Logo brand -->
+      <a href="#" class="flex items-center gap-3">
+        <img src="logo.png" alt="Cedarwind Solutions logo" class="h-10 w-auto select-none" />
+        <span class="sr-only">Cedarwind Solutions</span>
+      </a>
+      <button class="md:hidden" id="navToggle">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 6h18M3 12h18M3 18h18" />
+        </svg>
+      </button>
+      <ul id="navMenu" class="hidden md:flex gap-6 text-sm font-medium">
+        <li><a href="#approach" class="hover:text-primary">Approach</a></li>
+        <li><a href="#portfolio" class="hover:text-primary">Portfolio</a></li>
+        <li><a href="#services" class="hover:text-primary">Services</a></li>
+        <li><a href="#contact" class="hover:text-primary">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO BANNER -->
+  <!-- Replace banner.jpg with the downloaded header image filename -->
+  <header class="h-72 md:h-96 flex items-center justify-center bg-[url('banner.jpg')] bg-cover bg-center">
+    <div class="bg-black/40 p-8 md:p-12 rounded-xl text-center max-w-2xl">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-3">Elevating Real Estate Value</h1>
+      <p class="text-lg md:text-xl text-gray-200">Full‑service property management built on transparency, technology, and trust.</p>
+      <a href="#contact" class="mt-5 inline-block bg-accent hover:bg-primary text-white px-6 py-3 rounded-full font-semibold transition">Get in touch</a>
+    </div>
+  </header>
+
+  <!-- APPROACH -->
+  <section id="approach" class="py-20 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-8">Our Management Approach</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6 bg-white shadow rounded-2xl">
+          <h3 class="text-xl font-semibold mb-4">Data‑Driven Decisions</h3>
+          <p>We leverage real‑time analytics to optimize rental pricing, vacancy rates, and maintenance schedules—maximizing your ROI.</p>
+        </div>
+        <div class="p-6 bg-white shadow rounded-2xl">
+          <h3 class="text-xl font-semibold mb-4">Tenant‑First Philosophy</h3>
+          <p>Happy tenants stay longer. Our 24/7 support and mobile portal streamline communication, payments, and service requests.</p>
+        </div>
+        <div class="p-6 bg-white shadow rounded-2xl">
+          <h3 class="text-xl font-semibold mb-4">Sustainable Operations</h3>
+          <p>From energy audits to green retrofits, we future‑proof properties while cutting operating costs by up to 30%.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="py-20">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-8">Featured Portfolio</h2>
+      <div class="grid md:grid-cols-1 gap-6">
+        <!-- Single Property -->
+        <div class="relative group">
+          <img src="https://images.unsplash.com/photo-1499955085172-a104c9463ece?auto=format&fit=crop&w=800&q=80" class="rounded-2xl w-full h-64 object-cover" alt="58 Mary St, Arlington MA">
+          <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition rounded-2xl flex items-center justify-center">
+            <span class="text-white text-lg font-semibold text-center px-4">58 Mary St, Arlington MA • Residential Duplex</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-20 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-8">Services</h2>
+      <div class="grid md:grid-cols-2 gap-10">
+        <div class="flex gap-4">
+          <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-lease" /></svg>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Leasing & Marketing</h3>
+            <p>Professional photography, targeted digital campaigns, and agent network syndication reduce vacancy time.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-wrench" /></svg>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Maintenance & Renovation</h3>
+            <p>In‑house technicians and vetted contractors ensure quality work, predictable costs, and quick turnaround.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-finance" /></svg>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Financial Reporting</h3>
+            <p>Monthly owner statements, budget forecasts, and tax‑ready documents delivered via secure online portal.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <svg class="w-12 h-12 text-accent" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-shield" /></svg>
+          <div>
+            <h3 class="text-xl font-semibold mb-2">Risk & Compliance</h3>
+            <p>We navigate local regulations, insurance requirements, and tenant‑law updates to protect your investment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-20">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-6">Contact Us</h2>
+      <p class="text-center mb-10">Ready to elevate your property’s performance? Let’s talk.</p>
+      <!-- Direct email submission -->
+      <form class="grid gap-6" action="mailto:stuart@cedarwind.org" method="POST" enctype="text/plain">
+        <input type="text" name="name" placeholder="Name" required class="p-3 rounded-lg border border-gray-300 focus:outline-primary">
+        <input type="email" name="email" placeholder="Email" required class="p-3 rounded-lg border border-gray-300 focus:outline-primary">
+        <textarea name="message" rows="5" placeholder="Tell us about your property…" required class="p-3 rounded-lg border border-gray-300 focus:outline-primary"></textarea>
+        <button type="submit" class="bg-primary hover:bg-accent text-white font-semibold py-3 rounded-lg transition">Send Message</button>
+      </form>
+      <p class="text-xs text-center text-gray-500 mt-4">Your default email client will open when you click “Send Message.”</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-gray-400 py-8">
+    <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+      <p>&copy; 2025 Cedarwind Solutions. All rights reserved.</p>
+      <ul class="flex gap-4 mt-4 md:mt-0">
+        <li><a href="#" class="hover:text-white">Privacy</a></li>
+        <li><a href="#" class="hover
