@@ -112,7 +112,8 @@
     <div class="max-w-6xl mx-auto px-6">
       <h2 class="text-3xl font-extrabold text-center mb-12" data-aos="fade-down">Featured Property</h2>
       <div class="relative group overflow-hidden rounded-3xl shadow-2xl" data-aos="zoom-in">
-        <img src="portfolio-58-mary.jpg" alt="58 Mary St, Arlington MA" class="w-full h-80 md:h-[28rem] object-cover transition-transform duration-500 group-hover:scale-105" />
+        <!-- TIP APPLIED: object-center keeps focal point & responsive heights for better composition -->
+        <img src="portfolio-58-mary.jpg" alt="58 Mary St, Arlington MA" class="w-full h-80 md:h-[28rem] object-cover object-center transition-transform duration-500 group-hover:scale-105" />
         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
         <div class="absolute bottom-6 left-6 text-white">
           <h3 class="text-2xl font-bold tracking-wide">58 Mary St, Arlington MA</h3>
@@ -126,4 +127,22 @@
   <section id="services" class="py-24 bg-gray-50">
     <div class="max-w-6xl mx-auto px-6">
       <h2 class="text-3xl font-extrabold text-center mb-12" data-aos="fade-down">Services</h2>
-      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4" data-aos
+      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4" data-aos="fade-up" data-aos-delay="100">
+        <!-- reusable service card -->
+        <template id="service-card">
+          <div class="flex flex-col items-center text-center p-6 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-shadow">
+            <div class="w-14 h-14 flex items-center justify-center rounded-full bg-primary/10 text-primary mb-4"></div>
+            <h3 class="text-lg font-semibold mb-2"></h3>
+            <p class="text-sm text-gray-600"></p>
+          </div>
+        </template>
+        <div id="servicesContainer" class="contents"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-24 bg-gradient-to-br from-primary via-forest to-primary text-white relative overflow-hidden">
+    <svg class="absolute inset-0 w-full h-full text-white/5" preserveAspectRatio="none">
+      <defs>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
