@@ -3,170 +3,756 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cedarwind Solutions | Real‑Estate Management</title>
+  <title>Cedarwind Solutions | Real‑Estate Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root{--navy:#1e3a8a;--cedar:#065f46;--amber:#f59e0b}
-    /* decorative blob for hero */
-    .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.7}
-    .blob.one{width:400px;height:400px;top:-100px;left:-120px;background:var(--navy)}
-    .blob.two{width:300px;height:300px;bottom:-80px;right:-80px;background:var(--cedar)}
+    :root {
+      --navy:       #1e3a8a;
+      --navy-dark:  #0f2460;
+      --cedar:      #065f46;
+      --amber:      #f59e0b;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; }
+    .font-display { font-family: 'DM Serif Display', serif; }
+
+    /* ---- Animated hero gradient ---- */
+    .hero-bg {
+      background: linear-gradient(135deg, #0a1628 0%, #1e3a8a 40%, #0a2e1e 70%, #065f46 100%);
+      background-size: 300% 300%;
+      animation: gradientMove 14s ease infinite;
+    }
+    @keyframes gradientMove {
+      0%, 100% { background-position: 0% 50%; }
+      50%       { background-position: 100% 50%; }
+    }
+
+    /* ---- Floating blobs ---- */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.18;
+      pointer-events: none;
+      animation: floatBlob 10s ease-in-out infinite;
+    }
+    @keyframes floatBlob {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%       { transform: translateY(-22px) scale(1.06); }
+    }
+
+    /* ---- Amber gradient text ---- */
+    .text-amber-gradient {
+      background: linear-gradient(90deg, #f59e0b, #fcd34d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ---- Navy gradient text (stats) ---- */
+    .text-navy-gradient {
+      background: linear-gradient(135deg, var(--navy), #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ---- Section badge ---- */
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cedar);
+      padding: 5px 14px;
+      background: rgba(6, 95, 70, 0.08);
+      border-radius: 100px;
+      border: 1px solid rgba(6, 95, 70, 0.18);
+    }
+
+    /* ---- Nav scroll behavior ---- */
+    #site-nav {
+      transition: background 0.35s ease, box-shadow 0.35s ease;
+    }
+    #site-nav.scrolled {
+      background: rgba(255,255,255,0.97) !important;
+      box-shadow: 0 4px 28px rgba(0,0,0,0.08);
+      backdrop-filter: blur(14px);
+    }
+    #site-nav:not(.scrolled) .nav-link { color: rgba(255,255,255,0.88); }
+    #site-nav.scrolled .nav-link       { color: #374151; }
+    #site-nav:not(.scrolled) #navToggle { color: white; }
+    #site-nav.scrolled #navToggle       { color: #374151; }
+
+    /* ---- Card lift ---- */
+    .card-lift {
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease;
+    }
+    .card-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.11);
+    }
+
+    /* ---- Icon box ---- */
+    .icon-box {
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .icon-navy { background: rgba(30,58,138,0.1);  color: var(--navy); }
+    .icon-cedar { background: rgba(6,95,70,0.1);    color: var(--cedar); }
+    .icon-amber { background: rgba(245,158,11,0.1); color: #d97706; }
+    .icon-blue  { background: rgba(59,130,246,0.1); color: #3b82f6; }
+
+    /* ---- Buttons ---- */
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      color: #1a1100;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 100px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 18px rgba(245,158,11,0.45);
+      font-size: 0.95rem;
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(245,158,11,0.55);
+    }
+    .btn-ghost-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.9);
+      font-weight: 600;
+      padding: 13px 28px;
+      border-radius: 100px;
+      border: 2px solid rgba(255,255,255,0.35);
+      transition: border-color 0.2s, background 0.2s;
+      font-size: 0.95rem;
+    }
+    .btn-ghost-white:hover {
+      border-color: white;
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* ---- Portfolio overlay ---- */
+    .portfolio-overlay {
+      background: linear-gradient(to top,
+        rgba(0,0,0,0.88) 0%,
+        rgba(0,0,0,0.35) 50%,
+        transparent 100%);
+    }
+
+    /* ---- Testimonial quote mark ---- */
+    .quote-mark {
+      font-family: Georgia, serif;
+      font-size: 5.5rem;
+      line-height: 0.4;
+      color: var(--amber);
+      opacity: 0.35;
+    }
+
+    /* ---- Form fields ---- */
+    .form-field {
+      width: 100%;
+      padding: 13px 15px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 0.925rem;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #1e293b;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-field::placeholder { color: #94a3b8; }
+    .form-field:focus {
+      outline: none;
+      border-color: var(--navy);
+      box-shadow: 0 0 0 4px rgba(30,58,138,0.09);
+    }
+
+    /* ---- Footer links ---- */
+    .footer-link { color: #6b7280; transition: color 0.2s; }
+    .footer-link:hover { color: #fff; }
+
+    /* ---- Scroll reveal ---- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
-<body class="font-sans text-gray-800 scroll-smooth antialiased">
-  <!-- NAV -->
-  <nav class="fixed inset-x-0 top-0 z-50 backdrop-blur bg-white/70 shadow-sm">
-    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3">
-        <img src="logo.png" alt="Cedarwind logo" class="h-20 w-auto" />
-        <span class="sr-only">Cedarwind Solution</span>
+<body class="text-gray-800 antialiased">
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav id="site-nav" class="fixed inset-x-0 top-0 z-50 bg-transparent">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center">
+        <img src="logo.png" alt="Cedarwind Solutions" class="h-14 w-auto" />
       </a>
-      <button id="navToggle" class="md:hidden p-2">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+
+      <!-- Desktop links -->
+      <ul class="hidden md:flex items-center gap-8 font-medium text-sm">
+        <li><a href="#approach"  class="nav-link transition-colors hover:text-amber-400">Approach</a></li>
+        <li><a href="#portfolio" class="nav-link transition-colors hover:text-amber-400">Portfolio</a></li>
+        <li><a href="#services"  class="nav-link transition-colors hover:text-amber-400">Services</a></li>
+        <li><a href="#contact"   class="nav-link transition-colors hover:text-amber-400">Contact</a></li>
+      </ul>
+
+      <a href="#contact" class="hidden md:inline-flex btn-gold text-sm">
+        Get Started
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+        </svg>
+      </a>
+
+      <!-- Hamburger -->
+      <button id="navToggle" class="md:hidden p-2 transition-colors">
+        <svg id="iconOpen"  class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="iconClose" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
-      <ul id="navMenu" class="hidden md:flex gap-8 font-semibold text-sm">
-        <li><a href="#approach" class="hover:text-[var(--navy)]">Approach</a></li>
-        <li><a href="#portfolio" class="hover:text-[var(--navy)]">Portfolio</a></li>
-        <li><a href="#services" class="hover:text-[var(--navy)]">Services</a></li>
-        <li><a href="#contact" class="hover:text-[var(--navy)]">Contact</a></li>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="navMenu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-xl">
+      <ul class="flex flex-col px-6 py-5 gap-4 font-medium text-sm text-gray-700">
+        <li><a href="#approach"  class="block py-1 hover:text-[var(--navy)]">Approach</a></li>
+        <li><a href="#portfolio" class="block py-1 hover:text-[var(--navy)]">Portfolio</a></li>
+        <li><a href="#services"  class="block py-1 hover:text-[var(--navy)]">Services</a></li>
+        <li><a href="#contact"   class="block py-1 hover:text-[var(--navy)]">Contact</a></li>
+        <li class="pt-2">
+          <a href="#contact" class="btn-gold justify-center w-full text-center text-sm block py-3 px-6 rounded-full">Get Started</a>
+        </li>
       </ul>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <!-- HERO -->
-  <header class="relative flex items-center justify-center h-[30rem] md:h-[34rem] text-center px-6 overflow-hidden bg-gradient-to-br from-[var(--navy)] via-[var(--navy)]/40 to-[var(--cedar)]">
-    <!-- faint diagonal texture -->
-    <svg class="absolute inset-0 w-full h-full opacity-10" preserveAspectRatio="none">
-      <defs><pattern id="diag" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="2" height="10" fill="white"/></pattern></defs>
-      <rect width="100%" height="100%" fill="url(#diag)" />
+  <!-- ========== HERO ========== -->
+  <header class="hero-bg relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden px-6 pb-24">
+    <!-- Floating color blobs -->
+    <div class="blob" style="width:520px;height:520px;top:-120px;left:-160px;background:#2563eb;animation-delay:0s;"></div>
+    <div class="blob" style="width:420px;height:420px;bottom:-100px;right:-120px;background:#059669;animation-delay:3.5s;animation-duration:11s;"></div>
+    <div class="blob" style="width:260px;height:260px;top:55%;left:58%;background:#f59e0b;animation-delay:6s;animation-duration:13s;"></div>
+
+    <!-- Subtle grid overlay -->
+    <svg class="absolute inset-0 w-full h-full opacity-[0.035]" preserveAspectRatio="none">
+      <defs>
+        <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+    </svg>
+    <!-- Diagonal stripe overlay -->
+    <svg class="absolute inset-0 w-full h-full opacity-[0.03]" preserveAspectRatio="none">
+      <defs>
+        <pattern id="diag" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <rect width="3" height="12" fill="white"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#diag)"/>
     </svg>
 
-    <div class="relative z-10 max-w-3xl text-white drop-shadow-[0_3px_5px_rgba(0,0,0,0.7)]">
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
-        Maximizing <span class="text-[var(--amber)]">Value</span> &amp; Performance<br class="hidden sm:block"/>for Every Property
+    <!-- Hero content -->
+    <div class="relative z-10 max-w-4xl mx-auto">
+      <!-- Eyebrow badge -->
+      <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-2 text-white/75 text-xs font-semibold uppercase tracking-widest mb-8">
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+        Premier Property Management
+      </div>
+
+      <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.05] text-white mb-7">
+        Maximizing <span class="text-amber-gradient italic">Value</span><br/>
+        &amp; Performance<br class="hidden sm:block"/>
+        <span class="text-white/80">for Every Property</span>
       </h1>
-      <p class="mt-5 text-base sm:text-xl lg:text-2xl font-medium text-white/90">
+
+      <p class="text-lg sm:text-xl text-white/65 max-w-2xl mx-auto mb-11 leading-relaxed font-light">
         Data‑driven, tenant‑focused, and sustainability‑minded property management
+        that delivers measurable results for owners and tenants alike.
       </p>
-      <a href="#contact" class="mt-8 inline-block bg-[var(--amber)] hover:bg-white hover:text-[var(--navy)] px-8 py-3 rounded-full font-semibold transition shadow-lg">Let’s Talk</a>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#contact" class="btn-gold">
+          Schedule a Consultation
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+        <a href="#approach" class="btn-ghost-white">
+          Our Approach
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- White wave at bottom -->
+    <div class="absolute bottom-0 left-0 right-0">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" class="w-full block" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,50 C360,95 1080,5 1440,50 L1440,90 L0,90 Z" fill="white"/>
+      </svg>
     </div>
   </header>
 
-  <!-- SVG wave divider -->
-  <svg class="w-full -mt-1" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 80L1440 0V80H0Z" fill="currentColor" class="text-white"></path></svg>
+  <!-- ========== STATS BAR ========== -->
+  <section class="bg-white pt-4 pb-20">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-6 text-center">
+        <div class="reveal">
+          <p class="font-display text-5xl text-navy-gradient">50+</p>
+          <p class="mt-2 text-xs font-semibold text-gray-400 uppercase tracking-widest">Properties Managed</p>
+        </div>
+        <div class="reveal" style="transition-delay:0.1s">
+          <p class="font-display text-5xl text-navy-gradient">98%</p>
+          <p class="mt-2 text-xs font-semibold text-gray-400 uppercase tracking-widest">Tenant Satisfaction</p>
+        </div>
+        <div class="reveal" style="transition-delay:0.2s">
+          <p class="font-display text-5xl text-navy-gradient">30%</p>
+          <p class="mt-2 text-xs font-semibold text-gray-400 uppercase tracking-widest">Avg. OPEX Reduction</p>
+        </div>
+        <div class="reveal" style="transition-delay:0.3s">
+          <p class="font-display text-5xl text-navy-gradient">5+</p>
+          <p class="mt-2 text-xs font-semibold text-gray-400 uppercase tracking-widest">Years of Excellence</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- APPROACH -->
-  <!-- APPROACH -->
-  <section id="approach" class="py-24 bg-gray-50">
+  <!-- ========== APPROACH ========== -->
+  <section id="approach" class="py-28 bg-gray-50">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-3xl font-extrabold text-center mb-12">Our Approach</h2>
-      <div class="grid gap-10 md:grid-cols-3">
-        <!-- CARD 1 -->
-        <div class="group relative p-10 bg-white rounded-3xl shadow-lg ring-1 ring-gray-200 hover:ring-[var(--navy)] transition transform hover:-translate-y-1">
-          <div class="w-14 h-14 flex items-center justify-center rounded-full bg-[var(--navy)]/10 text-[var(--navy)] mb-6 transition group-hover:bg-[var(--navy)] group-hover:text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h18v4H3z M3 9h12v4H3z M3 15h8v4H3z"/></svg>
+      <div class="text-center mb-16 reveal">
+        <span class="section-badge">Our Philosophy</span>
+        <h2 class="font-display text-4xl lg:text-5xl mt-5 text-gray-900">
+          A smarter approach<br/>to <em>property management</em>
+        </h2>
+        <p class="mt-5 text-gray-500 max-w-xl mx-auto leading-relaxed">
+          We combine technology, experience, and genuine care to deliver outcomes
+          that matter — for owners and tenants alike.
+        </p>
+      </div>
+
+      <div class="grid gap-8 md:grid-cols-3">
+        <!-- Card 1 -->
+        <div class="card-lift reveal bg-white rounded-3xl p-10 shadow-[0_4px_28px_rgba(0,0,0,0.07)] ring-1 ring-gray-100 hover:ring-[var(--navy)] group">
+          <div class="icon-box icon-navy mb-6 group-hover:bg-[var(--navy)] group-hover:text-white transition-all duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
           </div>
           <h3 class="text-xl font-bold mb-3 text-gray-900">Data‑Driven Decisions</h3>
-          <p class="text-sm text-gray-600">Realtime dashboards inform rent, renewals & CapEx—boosting NOI.</p>
+          <p class="text-gray-500 leading-relaxed text-sm">Realtime dashboards inform rent pricing, lease renewals, and capital expenditures — continuously boosting your NOI.</p>
         </div>
-        <!-- CARD 2 -->
-        <div class="group relative p-10 bg-white rounded-3xl shadow-lg ring-1 ring-gray-200 hover:ring-[var(--navy)] transition transform hover:-translate-y-1">
-          <div class="w-14 h-14 flex items-center justify-center rounded-full bg-[var(--navy)]/10 text-[var(--navy)] mb-6 transition group-hover:bg-[var(--navy)] group-hover:text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20a8 8 0 100-16 8 8 0 000 16z M8 14s1.5 2 4 2 4-2 4-2"/></svg>
+
+        <!-- Card 2 -->
+        <div class="card-lift reveal bg-white rounded-3xl p-10 shadow-[0_4px_28px_rgba(0,0,0,0.07)] ring-1 ring-gray-100 hover:ring-[var(--cedar)] group" style="transition-delay:0.1s">
+          <div class="icon-box icon-cedar mb-6 group-hover:bg-[var(--cedar)] group-hover:text-white transition-all duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
           </div>
           <h3 class="text-xl font-bold mb-3 text-gray-900">Tenant‑First Culture</h3>
-          <p class="text-sm text-gray-600">24/7 support & community building reduce churn and vacancies.</p>
+          <p class="text-gray-500 leading-relaxed text-sm">24/7 support, transparent communication, and community‑building initiatives dramatically reduce churn and vacancies.</p>
         </div>
-        <!-- CARD 3 -->
-        <div class="group relative p-10 bg-white rounded-3xl shadow-lg ring-1 ring-gray-200 hover:ring-[var(--navy)] transition transform hover:-translate-y-1">
-          <div class="w-14 h-14 flex items-center justify-center rounded-full bg-[var(--navy)]/10 text-[var(--navy)] mb-6 transition group-hover:bg-[var(--navy)] group-hover:text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C6 7 4 12 4 16a8 8 0 0016 0c0-4-2-9-8-14z"/></svg>
+
+        <!-- Card 3 -->
+        <div class="card-lift reveal bg-white rounded-3xl p-10 shadow-[0_4px_28px_rgba(0,0,0,0.07)] ring-1 ring-gray-100 hover:ring-amber-400 group" style="transition-delay:0.2s">
+          <div class="icon-box icon-amber mb-6 group-hover:bg-amber-400 group-hover:text-white transition-all duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-gray-900">Sustainable Ops</h3>
-          <p class="text-sm text-gray-600">Green retrofits & smart tech cut OPEX up to 30% while future‑proofing.</p>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Sustainable Operations</h3>
+          <p class="text-gray-500 leading-relaxed text-sm">Green retrofits and smart technology cut operating costs up to 30% while future‑proofing your investment for the long term.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PORTFOLIO -->
-  <section id="portfolio" class="py-24">
+  <!-- ========== PORTFOLIO ========== -->
+  <section id="portfolio" class="py-28 bg-white">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-3xl font-extrabold text-center mb-12">Featured Property</h2>
-      <div class="relative rounded-3xl overflow-hidden shadow-xl max-w-4xl mx-auto group">
-        <img src="portfolio-58-mary.jpg" alt="58 Mary St living room" class="w-full h-80 md:h-[28rem] object-cover object-center transition-transform duration-500 group-hover:scale-105" />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-        <div class="absolute bottom-6 left-6 text-white">
-          <h3 class="text-2xl font-bold">58 Mary St, Arlington</h3>
-          <p class="text-sm opacity-90">Residential Duplex • Managed since 2023</p>
+      <div class="text-center mb-16 reveal">
+        <span class="section-badge">Our Work</span>
+        <h2 class="font-display text-4xl lg:text-5xl mt-5 text-gray-900">
+          Featured <em>Properties</em>
+        </h2>
+        <p class="mt-5 text-gray-500 max-w-xl mx-auto leading-relaxed">
+          A glimpse at the properties we've transformed through thoughtful management and strategic investment.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto reveal">
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer">
+          <img
+            src="portfolio-58-mary.jpg"
+            alt="58 Mary St — living room"
+            class="w-full h-[26rem] md:h-[38rem] object-cover object-center transition-transform duration-700 group-hover:scale-105"
+          />
+          <div class="portfolio-overlay absolute inset-0"></div>
+
+          <!-- Top badge -->
+          <div class="absolute top-6 left-6">
+            <span class="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur border border-white/25 text-white text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
+              <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+              Fully Occupied
+            </span>
+          </div>
+
+          <!-- Bottom content -->
+          <div class="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
+            <div class="flex flex-wrap items-end justify-between gap-6">
+              <div class="text-white">
+                <p class="text-amber-400 text-xs font-bold uppercase tracking-widest mb-2">Residential &bull; Arlington, MA</p>
+                <h3 class="font-display text-3xl md:text-4xl">58 Mary St</h3>
+                <p class="text-white/65 mt-1 text-sm">Residential Duplex &bull; Managed since 2023</p>
+              </div>
+              <div class="flex gap-8 text-center text-white">
+                <div>
+                  <p class="font-display text-3xl text-amber-400">2</p>
+                  <p class="text-xs text-white/55 uppercase tracking-wide mt-0.5">Units</p>
+                </div>
+                <div>
+                  <p class="font-display text-3xl text-amber-400">100%</p>
+                  <p class="text-xs text-white/55 uppercase tracking-wide mt-0.5">Occupied</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section id="services" class="py-24 bg-gray-50">
+  <!-- ========== SERVICES ========== -->
+  <section id="services" class="py-28 bg-gray-50">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-3xl font-extrabold text-center mb-12">Core Services</h2>
-      <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-        <div class="flex flex-col items-center text-center p-6 bg-white rounded-3xl shadow hover:shadow-xl transition">
-          <svg class="w-10 h-10 text-[var(--cedar)] mb-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4h16v4H4zM4 12h16v4H4z"/></svg>
-          <h3 class="font-semibold mb-2">Leasing & Marketing</h3>
-          <p class="text-sm text-gray-600">360° tours, targeted ads & agent network slash vacancy time.</p>
+      <div class="text-center mb-16 reveal">
+        <span class="section-badge">What We Do</span>
+        <h2 class="font-display text-4xl lg:text-5xl mt-5 text-gray-900">
+          End‑to‑end <em>management services</em>
+        </h2>
+        <p class="mt-5 text-gray-500 max-w-xl mx-auto leading-relaxed">
+          Everything you need to own property with confidence — all under one roof.
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <!-- Service 1 -->
+        <div class="card-lift reveal flex flex-col p-8 bg-white rounded-2xl ring-1 ring-gray-100 hover:ring-[var(--navy)] group">
+          <div class="icon-box icon-navy mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">Leasing &amp; Marketing</h3>
+          <p class="text-sm text-gray-500 leading-relaxed flex-1">360° tours, targeted digital ads, and an agent network that slash vacancy time.</p>
         </div>
-        <div class="flex flex-col items-center text-center p-6 bg-white rounded-3xl shadow hover:shadow-xl transition">
-          <svg class="w-10 h-10 text-[var(--cedar)] mb-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M22 7l-5 5-4-4 5-5zM2 20l7-7"/></svg>
-          <h3 class="font-semibold mb-2">Maintenance</h3>
-          <p class="text-sm text-gray-600">In‑house techs & vetted vendors deliver quality at a predictable cost.</p>
+
+        <!-- Service 2 -->
+        <div class="card-lift reveal flex flex-col p-8 bg-white rounded-2xl ring-1 ring-gray-100 hover:ring-[var(--cedar)] group" style="transition-delay:0.1s">
+          <div class="icon-box icon-cedar mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">Maintenance</h3>
+          <p class="text-sm text-gray-500 leading-relaxed flex-1">In‑house technicians and vetted vendors deliver quality repairs at predictable costs.</p>
         </div>
-        <div class="flex flex-col items-center text-center p-6 bg-white rounded-3xl shadow hover:shadow-xl transition">
-          <svg class="w-10 h-10 text-[var(--cedar)] mb-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h18v4H3zM3 10h12v4H3zM3 17h8v4H3z"/></svg>
-          <h3 class="font-semibold mb-2">Financial Reporting</h3>
-          <p class="text-sm text-gray-600">Live dashboards, monthly statements, and tax‑ready docs.</p>
+
+        <!-- Service 3 -->
+        <div class="card-lift reveal flex flex-col p-8 bg-white rounded-2xl ring-1 ring-gray-100 hover:ring-amber-400 group" style="transition-delay:0.2s">
+          <div class="icon-box icon-amber mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">Financial Reporting</h3>
+          <p class="text-sm text-gray-500 leading-relaxed flex-1">Live dashboards, monthly statements, and tax‑ready documentation — always clear.</p>
         </div>
-        <div class="flex flex-col items-center text-center p-6 bg-white rounded-3xl shadow hover:shadow-xl transition">
-          <svg class="w-10 h-10 text-[var(--cedar)] mb-4" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2l7 4v6c0 5-3 10-7 12-4-2-7-7-7-12V6z"/></svg>
-          <h3 class="font-semibold mb-2">Risk & Compliance</h3>
-          <p class="text-sm text-gray-600">We navigate regulations & insurance so you sleep easy.</p>
+
+        <!-- Service 4 -->
+        <div class="card-lift reveal flex flex-col p-8 bg-white rounded-2xl ring-1 ring-gray-100 hover:ring-blue-400 group" style="transition-delay:0.3s">
+          <div class="icon-box icon-blue mb-5">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-gray-900 mb-2">Risk &amp; Compliance</h3>
+          <p class="text-sm text-gray-500 leading-relaxed flex-1">We navigate regulations and insurance complexities so you sleep easy.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA Banner -->
-  <section class="py-16 bg-[var(--navy)] text-white text-center">
-    <h2 class="text-2xl md:text-3xl font-extrabold mb-4">Ready to maximise your property’s potential?</h2>
-    <a href="#contact" class="inline-block bg-[var(--amber)] hover:bg-white hover:text-[var(--navy)] px-8 py-3 rounded-full font-semibold transition">Schedule a Consultation</a>
-  </section>
+  <!-- ========== TESTIMONIALS ========== -->
+  <section class="py-28 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16 reveal">
+        <span class="section-badge">Testimonials</span>
+        <h2 class="font-display text-4xl lg:text-5xl mt-5 text-gray-900">
+          What our <em>clients say</em>
+        </h2>
+      </div>
 
-  <!-- CONTACT -->
-  <section id="contact" class="py-24 bg-white">
-    <div class="max-w-3xl mx-auto px-6">
-      <h2 class="text-3xl font-extrabold text-center mb-8">Contact Us</h2>
-      <form action="mailto:stuart@cedarwind.org" method="POST" enctype="text/plain" class="grid gap-6">
-        <input type="text" name="name" placeholder="Name" required class="p-3 rounded-lg border border-gray-300" />
-        <input type="email" name="email" placeholder="Email" required class="p-3 rounded-lg border border-gray-300" />
-        <textarea name="message" rows="5" placeholder="Tell us about your property…" required class="p-3 rounded-lg border border-gray-300"></textarea>
-        <button type="submit" class="bg-[var(--cedar)] hover:bg-[var(--navy)] text-white font-semibold py-3 rounded transition">Send Message</button>
-      </form>
+      <div class="grid gap-8 md:grid-cols-3">
+        <div class="card-lift reveal bg-gray-50 rounded-2xl p-8 ring-1 ring-gray-100">
+          <div class="quote-mark">"</div>
+          <p class="mt-3 text-gray-600 leading-relaxed text-sm">"Cedarwind transformed my rental into a stress‑free investment. Their attention to tenant satisfaction has kept my units at 100% occupancy for over a year."</p>
+          <div class="mt-7 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-xs">JR</div>
+            <div>
+              <p class="font-semibold text-gray-900 text-sm">James R.</p>
+              <p class="text-xs text-gray-400">Property Owner, Arlington</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-lift reveal bg-gray-50 rounded-2xl p-8 ring-1 ring-gray-100" style="transition-delay:0.1s">
+          <div class="quote-mark">"</div>
+          <p class="mt-3 text-gray-600 leading-relaxed text-sm">"The financial reporting alone saved me hours every month. I finally feel in control of my portfolio without doing the legwork myself."</p>
+          <div class="mt-7 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white font-bold text-xs">SM</div>
+            <div>
+              <p class="font-semibold text-gray-900 text-sm">Sarah M.</p>
+              <p class="text-xs text-gray-400">Multi‑unit Investor, Boston</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-lift reveal bg-gray-50 rounded-2xl p-8 ring-1 ring-gray-100" style="transition-delay:0.2s">
+          <div class="quote-mark">"</div>
+          <p class="mt-3 text-gray-600 leading-relaxed text-sm">"Their green retrofit recommendations cut my energy costs by 28%. That's money back in my pocket every month — I wish I'd found them sooner."</p>
+          <div class="mt-7 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white font-bold text-xs">DK</div>
+            <div>
+              <p class="font-semibold text-gray-900 text-sm">David K.</p>
+              <p class="text-xs text-gray-400">Commercial Landlord, Cambridge</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="bg-gray-900 text-gray-400 text-sm py-8">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p>&© 2025 Cedarwind Solutions. All rights reserved.</p>
-      <div class="flex gap-4">
-        <a href="#" class="hover:text-white">Privacy</a>
-        <a href="#" class="hover:text-white">Terms</a>
+  <!-- ========== CTA BANNER ========== -->
+  <section class="relative py-28 overflow-hidden" style="background: linear-gradient(135deg, #0a1628 0%, var(--navy) 45%, var(--cedar) 100%);">
+    <!-- Dot pattern -->
+    <svg class="absolute inset-0 w-full h-full opacity-[0.06]" preserveAspectRatio="none">
+      <defs>
+        <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+          <circle cx="12" cy="12" r="1.5" fill="white"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#dots)"/>
+    </svg>
+    <!-- Glow blob -->
+    <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full opacity-20" style="background:radial-gradient(circle, #f59e0b, transparent 70%);"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-6 text-center">
+      <h2 class="font-display text-4xl lg:text-5xl text-white mb-5">
+        Ready to maximise your<br/>property's potential?
+      </h2>
+      <p class="text-white/55 mb-10 text-lg leading-relaxed">
+        Let's build a management strategy that works for your unique situation.
+      </p>
+      <a href="#contact" class="btn-gold text-base">
+        Schedule a Free Consultation
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section id="contact" class="py-28 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Left: info panel -->
+        <div class="reveal">
+          <span class="section-badge">Get In Touch</span>
+          <h2 class="font-display text-4xl lg:text-5xl mt-5 text-gray-900">
+            Let's talk about<br/>your <em>property</em>
+          </h2>
+          <p class="mt-5 text-gray-500 leading-relaxed">
+            Whether you have a single unit or a growing portfolio, we're here to
+            help you achieve your property management goals.
+          </p>
+
+          <div class="mt-10 space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="icon-box icon-navy flex-shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-900 text-sm">Email Us</p>
+                <a href="mailto:stuart@cedarwind.org" class="text-[var(--navy)] hover:underline text-sm">stuart@cedarwind.org</a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="icon-box icon-cedar flex-shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-900 text-sm">Service Area</p>
+                <p class="text-gray-500 text-sm">Greater Boston, MA &amp; surrounding areas</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="icon-box icon-amber flex-shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-900 text-sm">Response Time</p>
+                <p class="text-gray-500 text-sm">We respond to all inquiries within 24 hours</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: form -->
+        <div class="reveal" style="transition-delay:0.15s">
+          <form action="mailto:stuart@cedarwind.org" method="POST" enctype="text/plain"
+                class="bg-gray-50 rounded-3xl p-8 md:p-10 ring-1 ring-gray-200">
+            <h3 class="font-bold text-xl text-gray-900 mb-6">Send a Message</h3>
+            <div class="grid gap-5">
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Your Name</label>
+                <input type="text" name="name" placeholder="John Smith" required class="form-field" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Email Address</label>
+                <input type="email" name="email" placeholder="john@example.com" required class="form-field" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 uppercase tracking-wider mb-2">Message</label>
+                <textarea name="message" rows="5" placeholder="Tell us about your property…" required class="form-field resize-none"></textarea>
+              </div>
+              <button type="submit"
+                class="w-full bg-[var(--cedar)] hover:bg-[var(--navy)] text-white font-semibold py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 text-sm uppercase tracking-wider">
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-gray-950 text-gray-400">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+      <div class="grid md:grid-cols-3 gap-12 mb-12">
+        <!-- Brand -->
+        <div>
+          <img src="logo.png" alt="Cedarwind Solutions" class="h-12 w-auto brightness-0 invert opacity-85 mb-4" />
+          <p class="text-sm leading-relaxed text-gray-500">
+            Data‑driven, tenant‑focused property management across Greater Boston.
+          </p>
+        </div>
+
+        <!-- Nav links -->
+        <div>
+          <h4 class="font-semibold text-white text-xs mb-5 uppercase tracking-widest">Navigation</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#approach"  class="footer-link">Our Approach</a></li>
+            <li><a href="#portfolio" class="footer-link">Portfolio</a></li>
+            <li><a href="#services"  class="footer-link">Services</a></li>
+            <li><a href="#contact"   class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact info -->
+        <div>
+          <h4 class="font-semibold text-white text-xs mb-5 uppercase tracking-widest">Contact</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="mailto:stuart@cedarwind.org" class="footer-link">stuart@cedarwind.org</a></li>
+            <li><span class="text-gray-600">Greater Boston, MA</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+        <p>&copy; 2025 Cedarwind Solutions. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+        </div>
       </div>
     </div>
   </footer>
 
   <script>
-    document.getElementById('navToggle').onclick=()=>{
-      document.getElementById('navMenu').classList.toggle('hidden')}
+    const nav       = document.getElementById('site-nav');
+    const toggle    = document.getElementById('navToggle');
+    const menu      = document.getElementById('navMenu');
+    const iconOpen  = document.getElementById('iconOpen');
+    const iconClose = document.getElementById('iconClose');
+    let open = false;
+
+    // Scroll: add/remove .scrolled
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+    // Mobile menu toggle
+    toggle.addEventListener('click', () => {
+      open = !open;
+      menu.classList.toggle('hidden', !open);
+      iconOpen.classList.toggle('hidden', open);
+      iconClose.classList.toggle('hidden', !open);
+    });
+
+    // Close mobile menu on link click
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        open = false;
+        menu.classList.add('hidden');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+      });
+    });
+
+    // Scroll reveal using IntersectionObserver
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      }),
+      { threshold: 0.12, rootMargin: '0px 0px -50px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
